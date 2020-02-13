@@ -1,0 +1,16 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash
+
+replace_and_enable() {
+  echo "# $1"
+  service="buildkite-agent-${1}.service"
+  systemctl --user disable --now $service | echo "$service is already disabled"
+  systemctl --user enable --now "${2}/$service"
+  echo
+}
+
+replace_and_enable "ichigo" $ichigo
+replace_and_enable "niku" $niku
+
+systemctl --user daemon-reload
+systemctl --user reset-failed
