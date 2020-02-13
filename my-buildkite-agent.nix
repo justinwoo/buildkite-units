@@ -4,6 +4,11 @@
 , buildkite-agent # string path, e.g. "/home/justin/.buildkite-agent/bin/buildkite-agent"
 }:
 
+let
+  nix-init = ''. /home/${user}/.nix-profile/etc/profile.d/nix.sh'';
+  buildkite-cmd = ''${buildkite-agent} start --name="${user}-${id}"'';
+
+in
 pkgs.writeTextFile
   {
     name = "buildkite-agent-${id}";
@@ -14,7 +19,7 @@ pkgs.writeTextFile
 
       [Service]
       Type=simple
-      ExecStart=${buildkite-agent} start --name="${user}-${id}"
+      ExecStart=/bin/bash -c "${nix-init} && ${buildkite-cmd}"
       RestartSec=5
       Restart=on-failure
       RestartForceExitStatus=SIGPIPE
