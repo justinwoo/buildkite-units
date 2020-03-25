@@ -21,7 +21,8 @@ pkgs.writeTextFile
       Type=simple
       ExecStart=/bin/bash -c "${nix-init} && ${buildkite-cmd}"
       RestartSec=5
-      Restart=on-failure
+      Restart=always
+      StartLimitInterval=0
       RestartForceExitStatus=SIGPIPE
       TimeoutStartSec=10
       TimeoutStopSec=0
