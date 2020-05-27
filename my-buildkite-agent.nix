@@ -6,7 +6,7 @@
 
 let
   nix-init = ''. /home/${user}/.nix-profile/etc/profile.d/nix.sh'';
-  buildkite-cmd = ''${buildkite-agent} start --name="${user}-${id}"'';
+  buildkite-cmd = ''${buildkite-agent} start --name="${user}-${id}" --priority=2'';
 
 in
 pkgs.writeTextFile
