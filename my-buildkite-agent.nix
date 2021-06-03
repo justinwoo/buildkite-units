@@ -5,7 +5,7 @@
 }:
 
 let
-  nix-init = ''. /home/${user}/.nix-profile/etc/profile.d/nix.sh'';
+  nix-init = ''. /home/${user}/.nix-profile/etc/profile.d/nix.sh && . /home/${user}/.bashrc'';
   buildkite-cmd = ''${buildkite-agent} start --name="${user}-${id}" --priority=2'';
 
 in
