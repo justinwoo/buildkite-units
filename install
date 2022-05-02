@@ -10,7 +10,6 @@ replace_and_enable() {
 }
 
 replace_and_enable "ichigo" $ichigo
-replace_and_enable "niku" $niku
 
 systemctl --user daemon-reload
 systemctl --user reset-failed

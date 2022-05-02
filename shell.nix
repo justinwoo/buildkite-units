@@ -8,12 +8,10 @@ let
   };
 
   ichigo = mkAgent "ichigo";
-  niku = mkAgent "niku";
 
 in
 pkgs.mkShell {
   shellHook = ''
     export ichigo=${ichigo}
-    export niku=${niku}
   '';
 }
